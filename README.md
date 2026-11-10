@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Syntelesis-Lab/agency-garden/main/docs/assets/agency-garden.png" alt="Floating garden worlds where participants create, deliberate and build together" width="100%">
+  <img src="docs/assets/agency-garden.png" alt="Floating garden worlds where participants create, deliberate and build together" width="100%">
 </p>
 
 <h1 align="center">Agency Garden</h1>
@@ -12,6 +12,8 @@
   <img alt="Python 3.11 and newer" src="https://img.shields.io/badge/python-3.11%2B-2e6b50">
   <a href="https://github.com/Syntelesis-Lab/agency-garden/blob/main/LICENSE"><img alt="Apache 2.0 license" src="https://img.shields.io/badge/license-Apache--2.0-2e6b50"></a>
 </p>
+
+**Private audit preview.** This repository and its release artifacts remain private until Laurentiu Meirosu completes the full audit and explicitly approves public release. PyPI publication is deferred.
 
 Agency Garden lets you build small worlds where an agent's choices have consequences. Define what each participant can observe, what it can do, and how the world changes. Run scripted or model participants, compare conditions, and follow the resulting histories.
 
@@ -30,7 +32,7 @@ agency-garden view my-study/run
 
 Four participants contribute to a shared pool while each has a private need. The experiment compares two pool multipliers across three paired seeds. You get **6 episodes and 120 recorded decisions**, a JSON summary and an HTML explorer that opens directly in your browser.
 
-This installs the tagged alpha from GitHub and requires Git. You can also install the wheel from [Releases](https://github.com/Syntelesis-Lab/agency-garden/releases) with `python -m pip install /path/to/agency_garden-0.1.0a1-py3-none-any.whl`. PyPI publishing is prepared; the first index upload is pending maintainer account setup.
+This installs the tagged alpha from GitHub and requires Git authenticated with repository access during the private audit. You can also install the wheel from [Releases](https://github.com/Syntelesis-Lab/agency-garden/releases) with `python -m pip install /path/to/agency_garden-0.1.0a1-py3-none-any.whl`. PyPI publishing is prepared; the first index upload is pending maintainer account setup.
 
 Change a parameter in `experiment.toml`, use a new output directory, and run again. Each run freezes its configuration and implementation identity.
 

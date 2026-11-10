@@ -2,6 +2,10 @@
 
 Agency Garden uses Python package versions. The first candidate is `0.1.0a1`. A Git tag is `v` followed by the package version. Alpha status signals provisional APIs and a limited research foundation.
 
+## Publication hold
+
+Keep the repository and its release artifacts private until Laurentiu Meirosu completes the full audit and explicitly approves public release. Do not change repository visibility or publish to PyPI before that approval. PyPI account and environment setup are also deferred at the maintainer's request. The steps below describe the future release process, not permission to execute it.
+
 ## Prepare a candidate
 
 1. Update `src/agency_garden/_version.py`, `CHANGELOG.md` and `CITATION.cff` together.
