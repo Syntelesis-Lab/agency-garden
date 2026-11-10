@@ -1,0 +1,42 @@
+schema_version = 1
+name = "shared-commons"
+description = "Compare shared-pool returns while keeping participants and seeds paired."
+seeds = [11, 22, 33]
+repetitions = 1
+
+[world]
+kind = "commons"
+[world.parameters]
+rounds = 5
+endowment = 10
+multiplier = 2
+need_min = 8
+need_max = 12
+
+[[agents]]
+id = "ada"
+[agents.policy]
+kind = "middle"
+[[agents]]
+id = "basil"
+[agents.policy]
+kind = "random"
+[[agents]]
+id = "cleo"
+[agents.policy]
+kind = "last"
+[[agents]]
+id = "dara"
+[agents.policy]
+kind = "first"
+
+[[conditions]]
+name = "baseline"
+[[conditions]]
+name = "higher-return"
+[conditions.world]
+multiplier = 3
+
+[limits]
+max_steps = 100
+max_decisions = 1000

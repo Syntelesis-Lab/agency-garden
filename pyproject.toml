@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agency-garden"
+dynamic = ["version"]
+description = "Build consequential worlds for research on agency, moral reasoning and AI welfare."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{name = "Laurentiu Meirosu", email = "laurentiu@ymail.dev"}]
+keywords = ["agents", "simulation", "research", "multi-agent", "moral-reasoning", "ai-welfare"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Typing :: Typed",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["pydantic>=2.10,<3", "filelock>=3.18,<4"]
+
+[project.optional-dependencies]
+openai = ["openai>=2,<3"]
+anthropic = ["anthropic>=0.70,<2"]
+models = ["openai>=2,<3", "anthropic>=0.70,<2"]
+dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.11,<1", "mypy>=1.15,<2", "build>=1.2,<2", "twine>=6,<7"]
+docs = ["mkdocs-material>=9.6,<10"]
+
+[project.urls]
+Homepage = "https://syntelesis.com"
+Repository = "https://github.com/Syntelesis-Lab/agency-garden"
+Documentation = "https://github.com/Syntelesis-Lab/agency-garden/tree/main/docs"
+Issues = "https://github.com/Syntelesis-Lab/agency-garden/issues"
+Changelog = "https://github.com/Syntelesis-Lab/agency-garden/blob/main/CHANGELOG.md"
+
+[project.scripts]
+agency-garden = "agency_garden.cli:main"
+
+[tool.hatch.version]
+path = "src/agency_garden/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agency_garden"]
+core-metadata-version = "2.4"
+
+[tool.hatch.build.targets.sdist]
+core-metadata-version = "2.4"
+include = ["/src", "/tests", "/examples", "/scripts", "/docs", "/.github", "/pyproject.toml", "/README.md", "/LICENSE", "/NOTICE", "/CHANGELOG.md", "/CONTRIBUTING.md", "/SECURITY.md", "/CITATION.cff", "/mkdocs.yml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/agency_garden"]
+
+[tool.coverage.run]
+source = ["agency_garden"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true

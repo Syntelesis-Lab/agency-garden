@@ -1,0 +1,37 @@
+site_name: Agency Garden
+site_description: Build worlds. Investigate agency.
+repo_url: https://github.com/Syntelesis-Lab/agency-garden
+repo_name: Syntelesis-Lab/agency-garden
+copyright: Copyright © 2026 Laurentiu Meirosu · Syntelesis
+theme:
+  name: material
+  palette:
+    primary: green
+    accent: amber
+  features:
+    - navigation.sections
+    - navigation.footer
+    - content.code.copy
+nav:
+  - Welcome: index.md
+  - Get started:
+      - Quickstart: quickstart.md
+      - Configuration: configuration.md
+      - Built-in worlds: worlds.md
+      - Model participants: models.md
+  - Build and investigate:
+      - Extensions: extensions.md
+      - Python API: api.md
+      - Execution and evidence: execution.md
+      - Research use: research.md
+  - Project:
+      - Architecture: architecture.md
+      - Roadmap: roadmap.md
+      - Releases: releasing.md
+      - Artwork: assets/artwork.md
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+plugins:
+  - search

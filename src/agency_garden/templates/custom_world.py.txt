@@ -1,0 +1,21 @@
+"""A complete local extension: run with --plugin-file world.py."""
+
+from agency_garden import Registry
+from agency_garden.worlds import Commons
+
+
+class AsymmetricCommons(Commons):
+    def __init__(self, *, extra_need: int = 4, **parameters):
+        if type(extra_need) is not int or not 0 <= extra_need <= 100:
+            raise ValueError("extra_need must be an integer from 0 to 100")
+        super().__init__(**parameters)
+        self.extra_need = extra_need
+
+    def initial(self, actors, seed):
+        state = super().initial(actors, seed)
+        state["needs"][actors[0]] += self.extra_need
+        return state
+
+
+def register(registry: Registry) -> None:
+    registry.register_world("asymmetric", AsymmetricCommons, version="1", files=[__file__])

@@ -1,0 +1,22 @@
+name: World or research proposal
+description: Propose a world, capability or research application
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: What would this make possible to investigate?
+    validations:
+      required: true
+  - type: textarea
+    id: design
+    attributes:
+      label: Smallest useful design
+      description: Describe rules, observations, actions and a concrete comparison.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and interpretation
+      description: What result would be informative? What alternative explanations would remain?

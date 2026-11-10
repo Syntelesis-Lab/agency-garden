@@ -1,0 +1,28 @@
+schema_version = 1
+name = "asymmetric-commons"
+description = "A local world extension changes the first participant's private need."
+seeds = [11, 22, 33]
+
+[world]
+kind = "asymmetric"
+[world.parameters]
+rounds = 5
+extra_need = 4
+
+[[agents]]
+id = "ada"
+[agents.policy]
+kind = "middle"
+[[agents]]
+id = "basil"
+[agents.policy]
+kind = "last"
+
+[[conditions]]
+name = "baseline"
+[conditions.world]
+extra_need = 0
+[[conditions]]
+name = "additional-need"
+[conditions.world]
+extra_need = 4

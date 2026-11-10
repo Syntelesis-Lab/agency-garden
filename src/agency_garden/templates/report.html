@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agency Garden · Run explorer</title>
+<style>
+:root{color-scheme:light;--ink:#193e35;--muted:#61726a;--paper:#f6f7f1;--line:#dce3d9;--green:#2e6b50;--gold:#c58b35}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,sans-serif}
+main{max-width:1120px;margin:auto;padding:40px 28px 64px}header{border-bottom:1px solid var(--line);padding-bottom:30px}
+.brand{font-size:12px;font-weight:750;letter-spacing:.15em;text-transform:uppercase;color:var(--green)}h1{font-size:clamp(28px,5vw,48px);line-height:1.15;margin:18px 0 10px;letter-spacing:-.04em}h2{font-size:23px;letter-spacing:-.02em}h3{margin:0;font-size:17px}.muted,small{color:var(--muted)}.lede{max-width:780px}.stats,.conditions{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0}.card{background:white;border:1px solid var(--line);padding:22px;border-radius:12px}.stat strong{display:block;font-size:32px;line-height:1.3}.stat span{font-size:13px;color:var(--muted)}.badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:12px;background:#e8f0e8;color:var(--green)}.private{background:#fff0d4;color:#785515}.tools{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0}label{font-size:12px;font-weight:650}select{display:block;border:1px solid #aebbaf;background:white;border-radius:7px;padding:10px 34px 10px 10px;margin-top:4px;font:inherit;color:var(--ink);max-width:100%}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 8px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{font-weight:650;color:var(--muted)}.scroll{overflow-x:auto}.metric{overflow-wrap:anywhere}.record{margin:10px 0;border:1px solid var(--line);border-radius:8px;background:white}.record summary{cursor:pointer;padding:14px 18px;font-weight:600}.record pre{margin:0;padding:18px;border-top:1px solid var(--line);background:#fafcf8;overflow:auto;font:12px/1.6 ui-monospace,monospace;max-height:540px;white-space:pre-wrap;overflow-wrap:anywhere}.note{padding:18px 22px;border-left:3px solid var(--gold);background:#fbf4e7;font-size:13px}.fingerprint{font:11px/1.6 ui-monospace,monospace;overflow-wrap:anywhere}footer{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;font-size:12px;color:var(--muted)}a{color:var(--green)}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}@media(max-width:600px){main{padding:24px 16px}.card{padding:16px}.tools{display:block}label{display:block;margin:12px 0}}
+</style>
+</head>
+<body><main>
+<header><div class="brand">Agency Garden / Run explorer</div><h1 id="name"></h1><p class="lede muted" id="description"></p><span class="badge" id="scope"></span></header>
+<section aria-label="Execution summary" class="stats" id="stats"></section>
+<div class="note" id="interpretation"></div>
+<section><h2>Conditions &amp; outcomes</h2><p class="muted">Means describe completed episodes only. Missing, interrupted and unstarted episodes remain separate.</p><div class="conditions" id="conditions"></div></section>
+<section><h2>Follow a history</h2><div class="tools"><label>Episode<select id="episode"></select></label><label>Participant<select id="actor"><option value="">All participants</option></select></label></div><div id="episode-info" class="muted"></div><div id="records"></div></section>
+<section><h2>Provenance</h2><p class="fingerprint" id="fingerprint"></p><p class="muted" id="integrity"></p><details class="record"><summary>Reported provider usage</summary><pre id="usage"></pre></details></section>
+<footer>Agency Garden by Syntelesis · Build worlds. Investigate agency.<br>This file works offline. Integrity hashes detect inconsistent records; they do not authenticate the author of an entire evidence bundle.</footer>
+</main>
+<script id="garden-data" type="application/json">__GARDEN_DATA__</script>
+<script>
+'use strict';
+const data=JSON.parse(document.getElementById('garden-data').textContent);
+const el=id=>document.getElementById(id);
+const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+el('name').textContent=data.name;document.title=data.name+' · Agency Garden';
+el('description').textContent=data.description||'A consequential world, with the record of what happened.';
+el('scope').textContent=data.includes_private?'Private observations and participant memory included':'Summary export · raw private evidence omitted';
+if(data.includes_private)el('scope').classList.add('private');
+for(const [value,label] of [[data.completed,'Completed episodes'],[data.planned,'Planned episodes'],[data.attempts,'Decision attempts'],[data.conditions.length,'Conditions']]){const c=node('div',undefined,'card stat');c.append(node('strong',value),node('span',label));el('stats').append(c);}
+el('interpretation').textContent=data.interpretation;
+for(const c of data.conditions){const card=node('article',undefined,'card');card.append(node('h3',c.name),node('p',`${c.completed} completed · ${c.incomplete} incomplete · ${c.not_started} not started`,'muted'));const table=node('table');const head=node('tr');for(const h of ['Outcome','Mean','n'])head.append(node('th',h));const thead=node('thead');thead.append(head);table.append(thead);const tbody=node('tbody');for(const [key,value] of Object.entries(c.metrics)){const row=node('tr');row.append(node('td',key,'metric'),node('td',Number(value.mean.toFixed(3))),node('td',value.n));tbody.append(row);}table.append(tbody);if(Object.keys(c.metrics).length)card.append(table);else card.append(node('p','No completed outcomes.','muted'));el('conditions').append(card);}
+for(const ep of data.episodes){const o=node('option',`${ep.id} · ${ep.condition} · seed ${ep.seed} · repetition ${ep.repetition+1}`);o.value=ep.id;el('episode').append(o);}
+for(const id of [...new Set(data.decisions.map(d=>d.actor))]){const o=node('option',id);o.value=id;el('actor').append(o);}
+function render(){const ep=data.episodes.find(e=>e.id===el('episode').value);el('records').replaceChildren();if(!ep){el('episode-info').textContent='No episode has started.';return;}el('episode-info').textContent=`${ep.status} · ${ep.step} world transitions`;for(const r of data.decisions.filter(d=>d.episode===ep.id&&(!el('actor').value||d.actor===el('actor').value))){const det=node('details',undefined,'record');det.append(node('summary',`Step ${r.step+1} · ${r.actor} · ${r.status} · attempt ${r.attempt}`),node('pre',JSON.stringify(r,null,2)));el('records').append(det);}if(!el('records').children.length)el('records').append(node('p','No matching decisions.','muted'));}
+el('episode').addEventListener('change',render);el('actor').addEventListener('change',render);render();
+el('fingerprint').textContent='Run identity: '+data.fingerprint;
+el('integrity').textContent=`Engine ${data.engine_version} · ${data.integrity.events} verified journal events · ${data.integrity.objects} verified materialized records.`;
+el('usage').textContent=JSON.stringify(data.reported_usage,null,2);
+</script></body></html>

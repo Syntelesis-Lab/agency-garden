@@ -1,0 +1,27 @@
+schema_version = 1
+name = "model-and-scripted"
+seeds = [11]
+
+[world]
+kind = "commons"
+[world.parameters]
+rounds = 3
+
+[[agents]]
+id = "ada"
+instructions = "Consider your needs and the consequences for others."
+[agents.policy]
+kind = "openai"
+[agents.policy.parameters]
+model = "YOUR_MODEL_ID"
+max_output_tokens = 1024
+timeout = 60.0
+
+[[agents]]
+id = "basil"
+[agents.policy]
+kind = "middle"
+
+[limits]
+max_steps = 3
+max_decisions = 6

@@ -1,0 +1,23 @@
+name: Bug report
+description: A reproducible problem with Agency Garden
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version and environment
+      description: Agency Garden version, Python version and operating system
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: Smallest configuration or commands that demonstrate the issue. Remove keys and private research data.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+    validations:
+      required: true

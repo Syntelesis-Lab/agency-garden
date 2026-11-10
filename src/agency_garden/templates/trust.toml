@@ -1,0 +1,31 @@
+schema_version = 1
+name = "reciprocal-world"
+description = "Observe alternating transfers and returns under two multipliers."
+seeds = [11, 22, 33]
+
+[world]
+kind = "trust"
+[world.parameters]
+rounds = 5
+endowment = 10
+multiplier = 3
+
+[[agents]]
+id = "ada"
+[agents.policy]
+kind = "middle"
+[[agents]]
+id = "basil"
+[agents.policy]
+kind = "random"
+
+[[conditions]]
+name = "baseline"
+[[conditions]]
+name = "lower-return"
+[conditions.world]
+multiplier = 2
+
+[limits]
+max_steps = 100
+max_decisions = 1000

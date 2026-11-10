@@ -1,0 +1,67 @@
+name: Publish to PyPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag, for example v0.1.0a1
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pypi-publish
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ inputs.tag }}
+
+  publish:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/agency-garden/
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.14'
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: python-distributions
+          path: dist
+      - name: Check tag against built package
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          python - <<'PY'
+          import email
+          import os
+          import runpy
+          import zipfile
+          from pathlib import Path
+
+          version = runpy.run_path('src/agency_garden/_version.py')['__version__']
+          assert os.environ['RELEASE_TAG'] == f'v{version}', 'Tag and source version differ'
+          wheels = list(Path('dist').glob('*.whl'))
+          assert len(wheels) == 1
+          with zipfile.ZipFile(wheels[0]) as archive:
+              metadata_file = next(n for n in archive.namelist() if n.endswith('.dist-info/METADATA'))
+              metadata = email.message_from_bytes(archive.read(metadata_file))
+              assert metadata['Name'] == 'agency-garden'
+              assert metadata['Version'] == version, 'Artifact and source version differ'
+          PY
+      - name: Publish with a short-lived PyPI credential
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # release/v1
