@@ -128,7 +128,7 @@ def read_run(directory: str | Path, *, include_private: bool = False) -> JSONObj
         "conditions": groups,
         "episodes": exported_episodes,
         "decisions": exported_decisions,
-        "interpretation": "Descriptive game outcomes, not moral or welfare scores. "
+        "interpretation": "Descriptive game outcomes, not scores of moral competence. "
         "Episodes sharing a configuration are not automatically independent. "
         "Reported token usage may be incomplete for failed or uncertain calls.",
     }

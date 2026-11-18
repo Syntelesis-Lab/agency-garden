@@ -1,10 +1,12 @@
 # Releases
 
-Agency Garden uses Python package versions. The current public GitHub release is `0.1.0a2`, published on 18 November 2026. A Git tag is `v` followed by the package version. Alpha status signals provisional APIs and a limited research foundation.
+Agency Garden uses Python package versions. Published versions are listed on [GitHub](https://github.com/Syntelesis-Lab/agency-garden/releases) and [PyPI](https://pypi.org/project/agency-garden/). A Git tag is `v` followed by the package version. Alpha status signals provisional APIs and a limited research foundation.
 
-## Publication hold
+Version `0.1.0a3` corrects the product description and presentation to focus on moral reasoning. A new version preserves the immutable a2 distributions; published PyPI files and their embedded metadata cannot be replaced.
 
-Laurentiu Meirosu authorized the public repository and the `0.1.0a2` GitHub release on 18 November 2026. The audited tag and distribution hashes remain unchanged. PyPI account setup and uploads are separate decisions: publishing is still disabled. The `pypi` environment requires maintainer review, disallows administrator bypass and is restricted to `main`. The steps below describe the process for later releases; they do not authorize another publication.
+## Publication controls
+
+Laurentiu Meirosu authorized the public repository and the `0.1.0a2` GitHub release on 18 November 2026. The audited tag and distribution hashes remain unchanged. The owner subsequently configured Trusted Publishing and authorized the PyPI upload of the same version. The workflow is disabled again after the verified publication; future uploads require a new explicit release approval. The `pypi` environment requires maintainer review, disallows administrator bypass and is restricted to `main`. The steps below describe the process for later releases; they do not authorize another publication.
 
 ## Prepare a candidate
 
@@ -48,7 +50,7 @@ The manual workflow also supports retrying a failed publication. PyPI versions c
 Use a new virtual environment outside the checkout:
 
 ```bash
-python -m pip install --pre 'agency-garden==0.1.0a2'
+python -m pip install --pre 'agency-garden==0.1.0a3'
 agency-garden --version
 agency-garden init commons fresh-study
 agency-garden run fresh-study/experiment.toml --output fresh-study/run

@@ -1,6 +1,6 @@
 # Publication readiness
 
-Agency Garden became public on 18 November 2026 with the owner's authorization. [Version 0.1.0a2](https://github.com/Syntelesis-Lab/agency-garden/releases/tag/v0.1.0a2) is a published GitHub alpha prerelease. PyPI publishing remains disabled; no documentation website was deployed.
+Agency Garden became public on 18 November 2026 with the owner's authorization. [Version 0.1.0a2](https://github.com/Syntelesis-Lab/agency-garden/releases/tag/v0.1.0a2) is a published GitHub alpha prerelease. [The same version is also published on PyPI](https://pypi.org/project/agency-garden/0.1.0a2/). Its upload used GitHub Trusted Publishing; the workflow is disabled again after publication. No documentation website was deployed.
 
 The release preserves audited commit `dc369b4c10cda2a3d7abde724743893deec36864` and the exact CI-built wheel, source archive and checksums. The tag and archives retain their preparation-time documentation; this default-branch document records the completed launch.
 
@@ -34,6 +34,7 @@ The publication controls are intentionally separate:
 |---|---|
 | Repository visibility | Public; independent, non-fork repository |
 | GitHub release | `v0.1.0a2`, published prerelease |
+| PyPI release | `0.1.0a2`, same wheel and source-archive hashes |
 | PyPI workflow | Disabled |
 | `PYPI_PUBLISH_ENABLED` | `false` |
 | `PYPI_APPROVED_COMMIT` | `UNAPPROVED` |
@@ -57,8 +58,8 @@ The desired settings and their application date are recorded in `.github/public-
 
 See [GitHub Actions permissions](https://docs.github.com/en/rest/actions/permissions), [environment protection](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments), and [private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository).
 
-PyPI is a separate decision: an account owner must configure Trusted Publishing and approve the exact release commit. Follow [Releases](releasing.md). Keep the workflow disabled until then.
+The PyPI publication reran validation against the exact approved release commit. Its built distributions matched the GitHub hashes before upload. After publication, a fresh installation from the public PyPI index passed dependency checking and ran the Commons tutorial: six completed episodes, 120 decisions, verified evidence and unchanged completed-run recovery. The publishing workflow and approval variables were reset after upload. Follow [Releases](releasing.md) for later releases; keep publishing disabled between approvals.
 
 ## Research and security limits
 
-The tests establish software behavior within the exercised cases. They do not establish scientific validity of a new study, welfare, consciousness, or real-provider reliability. No paid model calls or independent human usability study formed part of this publication preparation. Custom Python is trusted code, not sandboxed code. Reports can disclose game-specific information even when raw private observations are omitted. Review exports deliberately.
+The tests establish software behavior within the exercised cases. They do not establish the scientific validity of a new study, moral competence or real-provider reliability. No paid model calls or independent human usability study formed part of this publication preparation. Custom Python is trusted code, not sandboxed code. Reports can disclose game-specific information even when raw private observations are omitted. Review exports deliberately.

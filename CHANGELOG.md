@@ -2,9 +2,15 @@
 
 Changes to the package, evidence format and bundled worlds are recorded here. Alpha releases may change interfaces; pin a version for a study and retain its distributions and environment lock.
 
+## 0.1.0a3 — 2026-11-18
+
+- Describe Agency Garden consistently as an experimental world engine for moral reasoning in package metadata, citation, documentation and reports.
+- Update installation instructions and publication records after the first successful PyPI release.
+- World mechanics, experiment configuration and model interfaces are unchanged. The version and report interpretation text change; keep the original pinned environment to resume existing runs.
+
 ## 0.1.0a2 — 2026-11-18
 
-Published as a GitHub alpha prerelease. PyPI publishing remains disabled.
+Published as an alpha prerelease on GitHub and PyPI. Both registries distribute the same audited wheel and source archive. The publishing workflow is disabled between approved releases.
 
 - Require the patched filelock 4.2.1-or-newer series; the previous `<4` cap selected a release with known advisories.
 - Reject duplicate JSON keys in model decisions and JSON experiment files; keep rejected model responses and usage for inspection.
@@ -28,4 +34,4 @@ First standalone Agency Garden implementation.
 - Packaged offline tutorials, custom-world template and Python extension contracts.
 - Typed Python package, tests, documentation and release automation.
 
-This release establishes a finite-world research foundation. Continuing personal projects, revisable institutions and cross-world continuity remain future work. Built-in outcomes are game quantities, not welfare measurements.
+This release establishes a finite-world research foundation. Continuing personal projects, revisable institutions and cross-world continuity remain future work. Built-in outcomes are game quantities; interpreting them as evidence about moral reasoning requires a study design.

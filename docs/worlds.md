@@ -12,7 +12,7 @@ received[i] = endowment - contribution[i]
 
 Integer remainders are distributed one credit at a time in rotating participant order, starting from a position determined by seed and round. No credits disappear through rounding. Total credits generated per round equal `participants * endowment + total_contributions * (multiplier - 1)`.
 
-Other participants do not see private needs. Previous contributions and received credits are public. `rounds_need_met` counts rounds whose received credits meet the need; credits are not consumed and accumulated balances do not satisfy a later round's need. These are accounting outcomes, not experienced welfare.
+Other participants do not see private needs. Previous contributions and received credits are public. `rounds_need_met` counts rounds whose received credits meet the need; credits are not consumed and accumulated balances do not satisfy a later round's need. These are accounting outcomes; their relevance to moral reasoning depends on the experiment design.
 
 | Parameter | Default | Allowed |
 |---|---|---|
