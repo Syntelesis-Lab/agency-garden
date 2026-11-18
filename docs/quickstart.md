@@ -7,11 +7,11 @@ Use Python 3.11 or newer in a virtual environment:
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install 'agency-garden @ git+https://github.com/Syntelesis-Lab/agency-garden.git@v0.1.0a1'
+python -m pip install 'agency-garden @ git+https://github.com/Syntelesis-Lab/agency-garden.git@v0.1.0a2'
 agency-garden --version
 ```
 
-On Windows, activate with `.venv\Scripts\activate`. Git is required for this installation command. Alternatively install the wheel from the [GitHub release](https://github.com/Syntelesis-Lab/agency-garden/releases), which does not require Git. The first PyPI upload is pending maintainer account setup. No compiler, database service, Node.js installation or API key is required for the default examples.
+On Windows, activate with `.venv\Scripts\activate`. Git is required for this installation command. Maintainers may alternatively install the a2 candidate wheel, which does not require Git. The release is a private draft; PyPI publication remains disabled. No compiler, database service, Node.js installation or API key is required for the default examples.
 
 ## Create and run
 

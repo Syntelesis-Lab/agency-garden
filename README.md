@@ -7,13 +7,13 @@
 <p align="center">An experimental world engine for moral reasoning and AI welfare.<br>A project by <a href="https://syntelesis.com">Syntelesis</a>.</p>
 
 <p align="center">
-  <a href="https://github.com/Syntelesis-Lab/agency-garden/releases"><img alt="Version 0.1.0a1" src="https://img.shields.io/badge/version-0.1.0a1-2e6b50"></a>
+  <a href="https://github.com/Syntelesis-Lab/agency-garden/releases"><img alt="Candidate 0.1.0a2" src="https://img.shields.io/badge/candidate-0.1.0a2-2e6b50"></a>
   <a href="https://github.com/Syntelesis-Lab/agency-garden/actions/workflows/ci.yml"><img alt="Tests" src="https://github.com/Syntelesis-Lab/agency-garden/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Python 3.11 and newer" src="https://img.shields.io/badge/python-3.11%2B-2e6b50">
   <a href="https://github.com/Syntelesis-Lab/agency-garden/blob/main/LICENSE"><img alt="Apache 2.0 license" src="https://img.shields.io/badge/license-Apache--2.0-2e6b50"></a>
 </p>
 
-**Private audit preview.** This repository and its release artifacts remain private until Laurentiu Meirosu completes the full audit and explicitly approves public release. PyPI publication is deferred.
+**Private release preparation.** The repository remains private. The current source is the unreleased `0.1.0a2` candidate; `v0.1.0a1` is the existing private release. Public visibility and PyPI publication require a separate explicit decision. See [publication readiness](docs/public-readiness.md) for checks, scope and remaining launch steps.
 
 Agency Garden lets you build small worlds where an agent's choices have consequences. Define what each participant can observe, what it can do, and how the world changes. Run scripted or model participants, compare conditions, and follow the resulting histories.
 
@@ -24,7 +24,7 @@ The larger ambition is an open laboratory for artificial agency: purposes that p
 Python 3.11 or newer. The default examples run entirely offline; no API keys or model calls are needed.
 
 ```bash
-python -m pip install 'agency-garden @ git+https://github.com/Syntelesis-Lab/agency-garden.git@v0.1.0a1'
+python -m pip install 'agency-garden @ git+https://github.com/Syntelesis-Lab/agency-garden.git@v0.1.0a2'
 agency-garden init commons my-study
 agency-garden run my-study/experiment.toml --output my-study/run
 agency-garden view my-study/run
@@ -32,7 +32,7 @@ agency-garden view my-study/run
 
 Four participants contribute to a shared pool while each has a private need. The experiment compares two pool multipliers across three paired seeds. You get **6 episodes and 120 recorded decisions**, a JSON summary and an HTML explorer that opens directly in your browser.
 
-This installs the tagged alpha from GitHub and requires Git authenticated with repository access during the private audit. You can also install the wheel from [Releases](https://github.com/Syntelesis-Lab/agency-garden/releases) with `python -m pip install /path/to/agency_garden-0.1.0a1-py3-none-any.whl`. PyPI publishing is prepared; the first index upload is pending maintainer account setup.
+This installs the tagged a2 candidate from GitHub and requires authenticated repository access while it remains private. Maintainers can also install the candidate wheel with `python -m pip install /path/to/agency_garden-0.1.0a2-py3-none-any.whl`. The GitHub release is a draft and PyPI publication is disabled. The old a1 release is retained for provenance; use a2 for new installations because it updates the vulnerable dependency range.
 
 Change a parameter in `experiment.toml`, use a new output directory, and run again. Each run freezes its configuration and implementation identity.
 
@@ -88,7 +88,7 @@ print(result.completed)  # 3
 Install only the integration you need:
 
 ```bash
-python -m pip install 'agency-garden[openai] @ git+https://github.com/Syntelesis-Lab/agency-garden.git@v0.1.0a1'
+python -m pip install 'agency-garden[openai] @ git+https://github.com/Syntelesis-Lab/agency-garden.git@v0.1.0a2'
 # Or: 'agency-garden[anthropic]' / 'agency-garden[models]'
 ```
 

@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'codex/**']
   pull_request:
   workflow_call:
     inputs:
@@ -30,6 +30,7 @@ jobs:
       - run: ruff check .
       - run: ruff format --check .
       - run: mypy
+      - run: python scripts/check_release_files.py
       - run: mkdocs build --strict
 
   tests:
@@ -75,3 +76,19 @@ jobs:
           path: dist/*
           if-no-files-found: error
           retention-days: 14
+
+  release-check:
+    name: release-check
+    if: always()
+    needs: [quality, tests, distributions]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every validation job
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          python - <<'PYCODE'
+          import json, os
+          jobs = json.loads(os.environ['RESULTS'])
+          assert jobs and all(job['result'] == 'success' for job in jobs.values()), jobs
+          PYCODE

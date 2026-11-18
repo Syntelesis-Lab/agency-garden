@@ -28,6 +28,7 @@ nav:
       - Architecture: architecture.md
       - Roadmap: roadmap.md
       - Releases: releasing.md
+      - Publication readiness: public-readiness.md
       - Artwork: assets/artwork.md
 markdown_extensions:
   - admonition

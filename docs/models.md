@@ -3,7 +3,7 @@
 Optional adapters use the OpenAI Responses API and Anthropic Messages API. Their SDKs are imported only when selected. Scripted experiments require neither package nor credentials.
 
 ```bash
-python -m pip install 'agency-garden[models] @ git+https://github.com/Syntelesis-Lab/agency-garden.git@v0.1.0a1'
+python -m pip install 'agency-garden[models] @ git+https://github.com/Syntelesis-Lab/agency-garden.git@v0.1.0a2'
 ```
 
 Set `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` in your shell or secret environment. The engine does not read `.env` files implicitly and does not record key values.

@@ -1,0 +1,14 @@
+{
+  "status": "staged-only; apply after explicit public-release authorization",
+  "changes_repository_visibility": false,
+  "fork_workflow_approval": {"approval_policy": "all_external_contributors"},
+  "private_vulnerability_reporting": "enabled",
+  "secret_scanning": "enable free public-repository scanning and push protection where supported",
+  "pypi_environment": {
+    "required_reviewer_login": "lmeirosu",
+    "prevent_self_review": false,
+    "can_admins_bypass": false,
+    "allowed_dispatch_branch": "main"
+  },
+  "pypi_publication": "remains disabled until separate package-publication authorization"
+}

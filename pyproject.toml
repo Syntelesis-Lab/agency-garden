@@ -24,7 +24,7 @@ classifiers = [
   "Typing :: Typed",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
-dependencies = ["pydantic>=2.10,<3", "filelock>=3.18,<4"]
+dependencies = ["pydantic>=2.10,<3", "filelock>=4.2.1,<5"]
 
 [project.optional-dependencies]
 openai = ["openai>=2,<3"]

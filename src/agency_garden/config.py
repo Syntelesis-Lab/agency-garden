@@ -1,6 +1,5 @@
 """Strict, versioned experiment configuration; JSON and TOML are equivalent inputs."""
 
-import json
 import tomllib
 from pathlib import Path
 from typing import Annotated, Self
@@ -8,6 +7,7 @@ from typing import Annotated, Self
 from pydantic import BaseModel, ConfigDict, Field, JsonValue, ValidationError, model_validator
 
 from agency_garden.errors import ConfigurationError
+from agency_garden.serialization import parse_json
 
 Identifier = Annotated[str, Field(pattern=r"^[a-zA-Z][a-zA-Z0-9_-]{0,63}$")]
 
@@ -46,7 +46,7 @@ class Limits(StrictModel):
 
 
 class Experiment(StrictModel):
-    """An experiment expands conditions × seeds × repetitions into independent episodes."""
+    """Conditions × seeds × repetitions, each with a separately initialized state."""
 
     schema_version: int = Field(default=1, ge=1, le=1)
     name: Identifier
@@ -82,7 +82,7 @@ def load_experiment(path: str | Path) -> Experiment:
     source = Path(path)
     try:
         text = source.read_text(encoding="utf-8")
-        data = tomllib.loads(text) if source.suffix == ".toml" else json.loads(text)
+        data = tomllib.loads(text) if source.suffix == ".toml" else parse_json(text)
         return Experiment.model_validate(data)
     except (OSError, ValueError, ValidationError) as exc:
         raise ConfigurationError(f"Cannot load {source}: {exc}") from exc

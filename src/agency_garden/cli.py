@@ -3,7 +3,10 @@
 import argparse
 import importlib.util
 import json
+import os
+import shlex
 import sqlite3
+import subprocess
 import sys
 import webbrowser
 from contextlib import suppress
@@ -101,11 +104,17 @@ def _init(world: str, directory: Path) -> None:
             templates.joinpath("custom_world.py.txt").read_text(encoding="utf-8"), encoding="utf-8"
         )
     print(f"Created {directory / 'experiment.toml'}")
-    plugin = f" --plugin-file {directory / 'world.py'}" if world == "custom" else ""
-    print(
-        f"Next: agency-garden run {directory / 'experiment.toml'} "
-        f"--output {directory / 'run'}{plugin}"
-    )
+    command = [
+        "agency-garden",
+        "run",
+        str(directory / "experiment.toml"),
+        "--output",
+        str(directory / "run"),
+    ]
+    if world == "custom":
+        command.extend(["--plugin-file", str(directory / "world.py")])
+    rendered = subprocess.list2cmdline(command) if os.name == "nt" else shlex.join(command)
+    print(f"Next: {rendered}")
 
 
 def _execute(args: argparse.Namespace) -> None:

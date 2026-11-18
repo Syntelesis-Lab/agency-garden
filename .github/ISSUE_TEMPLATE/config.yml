@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security issue privately
+    url: https://github.com/Syntelesis-Lab/agency-garden/blob/main/SECURITY.md
+    about: Use the private reporting route; do not include secrets in public issues.

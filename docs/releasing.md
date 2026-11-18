@@ -1,17 +1,18 @@
 # Releases
 
-Agency Garden uses Python package versions. The first candidate is `0.1.0a1`. A Git tag is `v` followed by the package version. Alpha status signals provisional APIs and a limited research foundation.
+Agency Garden uses Python package versions. The existing private release is `0.1.0a1`; the current unreleased candidate is `0.1.0a2`. A Git tag is `v` followed by the package version. Alpha status signals provisional APIs and a limited research foundation.
 
 ## Publication hold
 
-Keep the repository and its release artifacts private until Laurentiu Meirosu completes the full audit and explicitly approves public release. Do not change repository visibility or publish to PyPI before that approval. PyPI account and environment setup are also deferred at the maintainer's request. The steps below describe the future release process, not permission to execute it.
+Keep the repository and its release artifacts private until Laurentiu Meirosu completes the full audit and explicitly approves public release. Do not change repository visibility or publish to PyPI before that approval. No PyPI account change or upload is authorized by repository preparation. A GitHub environment may be prepared while the publishing workflow remains disabled. The steps below describe the future release process, not permission to execute it.
 
 ## Prepare a candidate
 
 1. Update `src/agency_garden/_version.py`, `CHANGELOG.md` and `CITATION.cff` together.
 2. Run the checks in `CONTRIBUTING.md`. CI tests supported Python versions and operating systems, builds documentation and verifies the installed distributions.
 3. Inspect the source archive and wheel. Confirm no credentials, generated runs or private research records are included.
-4. Push the commit and wait for CI to pass. Create the matching tag and a GitHub release describing changes and limitations.
+4. Push the candidate privately and wait for the `release-check` aggregate CI check. Retain the exact commit and archive hashes. Do not move an existing tag or replace historical artifacts.
+5. Only after a separate release decision, create the matching tag and release. A public GitHub repository does not require a PyPI upload or a hosted documentation site.
 
 Use the repository owner's Git identity for maintainer commits. Publishing does not create source commits.
 
@@ -27,7 +28,16 @@ A PyPI account owner must authorize a Trusted Publisher. For a new project, add 
 | Workflow filename | `publish.yml` |
 | Environment | `pypi` |
 
-Create the `pypi` GitHub environment. An owner may add reviewers or tag restrictions appropriate to their release process. The workflow requests a short-lived PyPI credential through GitHub OIDC; no long-lived PyPI token belongs in this repository.
+Prepare the `pypi` GitHub environment, restricted to the default branch used to dispatch the workflow. Where the account plan supports it, require a maintainer reviewer and disable administrator bypass. Do not enable publishing as part of this setup.
+
+Publication additionally requires all of these deliberate steps:
+
+1. Explicit authorization for the particular package version, commit and PyPI destination.
+2. The repository is public and the manual workflow is dispatched from `main`.
+3. Set repository variable `PYPI_APPROVED_COMMIT` to the exact 40-character source commit, and `PYPI_PUBLISH_ENABLED` to `true`.
+4. Re-enable the otherwise disabled Publish workflow, and dispatch it with an existing matching version tag.
+5. The preparation job resolves that tag once and rejects any mismatch with the approved commit. CI and publication both use that immutable commit, not a moving tag.
+6. After the upload, disable the workflow and reset the enable variable. Keep approval narrow and time-bounded. The workflow requests a short-lived PyPI credential through GitHub OIDC; no long-lived PyPI token belongs in this repository.
 
 After configuring PyPI, run the **Publish to PyPI** workflow from GitHub Actions and supply the existing release tag. It runs the complete reusable validation workflow, checks that tag and package version match, builds distributions, and publishes the validated artifacts. If PyPI setup is incomplete, publication fails; a GitHub release alone does not make the package installable from PyPI.
 
@@ -38,7 +48,7 @@ The manual workflow also supports retrying a failed publication. PyPI versions c
 Use a new virtual environment outside the checkout:
 
 ```bash
-python -m pip install --pre 'agency-garden==0.1.0a1'
+python -m pip install --pre 'agency-garden==0.1.0a2'
 agency-garden --version
 agency-garden init commons fresh-study
 agency-garden run fresh-study/experiment.toml --output fresh-study/run

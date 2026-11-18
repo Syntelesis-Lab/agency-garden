@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing release tag, for example v0.1.0a1
+        description: Existing release tag, for example v0.1.0a2
         required: true
         type: string
 
@@ -16,13 +16,44 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  prepare:
+    if: >-
+      github.event.repository.private == false &&
+      vars.PYPI_PUBLISH_ENABLED == 'true' &&
+      github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      commit: ${{ steps.source.outputs.commit }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.14'
+      - id: source
+        name: Resolve the explicitly approved release
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          APPROVED_COMMIT: ${{ vars.PYPI_APPROVED_COMMIT }}
+          REPOSITORY_PRIVATE: ${{ github.event.repository.private }}
+          PUBLISH_ENABLED: ${{ vars.PYPI_PUBLISH_ENABLED }}
+        run: python scripts/check_publish_ref.py
+
   validate:
+    needs: prepare
     uses: ./.github/workflows/ci.yml
     with:
-      ref: ${{ inputs.tag }}
+      ref: ${{ needs.prepare.outputs.commit }}
 
   publish:
-    needs: validate
+    needs: [prepare, validate]
+    if: >-
+      github.event.repository.private == false &&
+      vars.PYPI_PUBLISH_ENABLED == 'true' &&
+      vars.PYPI_APPROVED_COMMIT == needs.prepare.outputs.commit
     runs-on: ubuntu-latest
     environment:
       name: pypi
@@ -33,7 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag }}
+          ref: ${{ needs.prepare.outputs.commit }}
           persist-credentials: false
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:

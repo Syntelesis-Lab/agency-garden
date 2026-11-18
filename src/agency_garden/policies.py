@@ -1,7 +1,6 @@
 """Transparent scripted baselines and optional, one-request model adapters."""
 
 import importlib
-import json
 import os
 import random
 from typing import Any, Literal
@@ -11,7 +10,7 @@ from pydantic import Field
 from agency_garden.config import StrictModel
 from agency_garden.contracts import Decision, Request
 from agency_garden.errors import ConfigurationError, PolicyError
-from agency_garden.serialization import canonical, clone
+from agency_garden.serialization import canonical, clone, parse_json
 
 
 class Scripted:
@@ -133,7 +132,7 @@ class ModelPolicy:
 
 def parse_model_response(text: str, receipt: dict[str, Any]) -> Decision:
     try:
-        body = json.loads(text)
+        body = parse_json(text)
         if not isinstance(body, dict) or set(body) != {"action", "memory", "reason"}:
             raise ValueError("Expected exactly action, memory and reason")
         if not isinstance(body["action"], dict) or not isinstance(body["memory"], dict):

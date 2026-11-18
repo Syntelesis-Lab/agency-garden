@@ -7,8 +7,8 @@ authors:
   - family-names: Meirosu
     given-names: Laurentiu
     affiliation: Syntelesis
-version: 0.1.0a1
-date-released: '2026-11-10'
+version: 0.1.0a2
+# Release date is added when this candidate is actually released.
 license: Apache-2.0
 repository-code: https://github.com/Syntelesis-Lab/agency-garden
 url: https://syntelesis.com

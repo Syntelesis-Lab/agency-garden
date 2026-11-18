@@ -19,7 +19,8 @@ pytest
 mkdocs build --strict
 python -m build
 python -m twine check dist/*
-python scripts/verify_distribution.py dist/*.whl
+python scripts/check_release_files.py
+python scripts/verify_distribution.py dist/*.whl --sdist dist/*.tar.gz
 ```
 
 The suite uses mocked model clients and makes no paid API calls. Distribution verification installs a wheel into a temporary environment, then executes all three packaged tutorials outside the checkout. Dependency installation requires network access unless packages are cached.

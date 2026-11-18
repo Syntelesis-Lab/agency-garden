@@ -15,6 +15,20 @@ def canonical(value: Any) -> str:
     )
 
 
+def parse_json(text: str) -> Any:
+    """Reject ambiguous objects instead of silently keeping the last duplicate key."""
+
+    def unique(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("Duplicate JSON key")
+            result[key] = value
+        return result
+
+    return json.loads(text, object_pairs_hook=unique)
+
+
 def digest(value: Any) -> str:
     return hashlib.sha256(canonical(value).encode()).hexdigest()
 

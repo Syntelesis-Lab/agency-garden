@@ -2,6 +2,17 @@
 
 Changes to the package, evidence format and bundled worlds are recorded here. Alpha releases may change interfaces; pin a version for a study and retain its distributions and environment lock.
 
+## 0.1.0a2 — unreleased
+
+- Require the patched filelock 4.2.1-or-newer series; the previous `<4` cap selected a release with known advisories.
+- Reject duplicate JSON keys in model decisions and JSON experiment files; keep rejected model responses and usage for inspection.
+- Quote generated CLI commands for study paths containing spaces.
+- Add release-file checks, an aggregate CI gate and dependency-update configuration.
+- Require explicit PyPI enablement, a public repository, the default branch, and an approved immutable release commit before publication. Publication remains disabled.
+- Document the standalone alpha's publication boundary and the separate research-integration roadmap.
+
+Existing a1 artifacts and evidence are unchanged. Source and version identities change in a2: continue old runs using their original pinned environment, or start a new run.
+
 ## 0.1.0a1 — 2026-11-10
 
 First standalone Agency Garden implementation.
