@@ -2,12 +2,12 @@ cff-version: 1.2.0
 message: "If you use Agency Garden in research, cite the exact software version and describe your world, policies and experiment configuration."
 type: software
 title: Agency Garden
-abstract: An experimental world engine for research on agency, moral reasoning and AI welfare.
+abstract: An experimental world engine for moral reasoning.
 authors:
   - family-names: Meirosu
     given-names: Laurentiu
     affiliation: Syntelesis
-version: 0.1.0a2
+version: 0.1.0a3
 date-released: 2026-11-18
 license: Apache-2.0
 repository-code: https://github.com/Syntelesis-Lab/agency-garden
@@ -15,5 +15,4 @@ url: https://syntelesis.com
 keywords:
   - artificial agency
   - moral reasoning
-  - AI welfare
   - multi-agent experiments

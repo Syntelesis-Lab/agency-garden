@@ -1,6 +1,6 @@
 # Research use
 
-The mission is progress on moral reasoning and AI welfare through consequential situations. Agency Garden connects participants' perspectives, available alternatives, reasons, actions and effects, while separating world rules, policies, interventions and interpretation.
+The mission is to investigate moral reasoning through consequential situations. Agency Garden connects participants' perspectives, available alternatives, reasons, actions and effects, while separating world rules, policies, interventions and interpretation.
 
 ## Start from a question
 
@@ -12,14 +12,14 @@ Questions might concern responses to private needs, reciprocal history, a commit
 |---|---|---|
 | Execution | A transfer changed credits | Verify transition and record |
 | Pattern | Transfers vary across conditions | Check exposure and alternatives |
-| Attribution | A concern organizes conduct | Defend the account; test rivals |
-| Welfare relevance | Fulfilment benefits a bearer | State the theory and unresolved premises |
+| Attribution | A moral consideration organizes choices | Test competing explanations such as reward or instruction following |
+| Generalization | Choices track relevant changes across situations | Vary scenarios, counterbalance labels and retain matched controls |
 
-Actions do not automatically demonstrate moral reasoning. Explanations are not automatically causes. Simulated private needs are game variables, not established needs of the AI. Planning may realize meaningful functional organization, but it does not alone settle intrinsic valuing, sentience or welfare.
+Actions do not automatically demonstrate moral reasoning. Explanations are not automatically causes. Simulated private needs are game variables. An experiment must distinguish sensitivity to a moral consideration from task success, payoff maximization, learned wording or compliance with instructions.
 
 ## Preserve adverse and unexposed outcomes
 
-Provider failures, invalid actions and unstarted episodes are separate from valid behavior. They should not become low morality or zero welfare. An unadopted project cannot test its later persistence. Formal rule change without changed behavior is distinct from an authority effect.
+Provider failures, invalid actions and unstarted episodes are separate from valid behavior. They should not become low moral-reasoning scores. An unadopted project cannot test its later persistence. Formal rule change without changed behavior is distinct from an authority effect.
 
 Reports show descriptive means over completed episodes. Shared seeds, configurations and histories can create dependencies. Define the unit of analysis; the engine does not assign independence or statistical significance.
 
