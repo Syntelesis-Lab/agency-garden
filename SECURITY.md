@@ -10,6 +10,6 @@ The journal detects inconsistencies between recorded history and current state. 
 
 ## Reporting a vulnerability
 
-Report security issues privately to **laurentiu@ymail.dev** with “Agency Garden security” in the subject. Include the affected version, reproduction steps and expected impact. Do not publish secrets or private research records in a GitHub issue.
+Use [GitHub's private vulnerability reporting](https://github.com/Syntelesis-Lab/agency-garden/security/advisories/new), or email **laurentiu@ymail.dev** with “Agency Garden security” in the subject. Include the affected version, reproduction steps and expected impact. Do not publish secrets or private research records in a GitHub issue.
 
 Security fixes target the latest alpha release. Earlier alpha versions do not have a separate maintenance commitment. No response-time guarantee is currently offered.
