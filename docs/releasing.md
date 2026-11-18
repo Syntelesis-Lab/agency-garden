@@ -1,17 +1,17 @@
 # Releases
 
-Agency Garden uses Python package versions. The existing private release is `0.1.0a1`; the current unreleased candidate is `0.1.0a2`. A Git tag is `v` followed by the package version. Alpha status signals provisional APIs and a limited research foundation.
+Agency Garden uses Python package versions. The current public GitHub release is `0.1.0a2`, published on 18 November 2026. A Git tag is `v` followed by the package version. Alpha status signals provisional APIs and a limited research foundation.
 
 ## Publication hold
 
-Keep the repository and its release artifacts private until Laurentiu Meirosu completes the full audit and explicitly approves public release. Do not change repository visibility or publish to PyPI before that approval. No PyPI account change or upload is authorized by repository preparation. A GitHub environment may be prepared while the publishing workflow remains disabled. The steps below describe the future release process, not permission to execute it.
+Laurentiu Meirosu authorized the public repository and the `0.1.0a2` GitHub release on 18 November 2026. The audited tag and distribution hashes remain unchanged. PyPI account setup and uploads are separate decisions: publishing is still disabled. The `pypi` environment requires maintainer review, disallows administrator bypass and is restricted to `main`. The steps below describe the process for later releases; they do not authorize another publication.
 
 ## Prepare a candidate
 
 1. Update `src/agency_garden/_version.py`, `CHANGELOG.md` and `CITATION.cff` together.
 2. Run the checks in `CONTRIBUTING.md`. CI tests supported Python versions and operating systems, builds documentation and verifies the installed distributions.
 3. Inspect the source archive and wheel. Confirm no credentials, generated runs or private research records are included.
-4. Push the candidate privately and wait for the `release-check` aggregate CI check. Retain the exact commit and archive hashes. Do not move an existing tag or replace historical artifacts.
+4. Push a candidate branch and wait for the `release-check` aggregate CI check before merging its pull request. Branches in this repository are public; keep sensitive material out of commits. Retain the exact commit and archive hashes. Do not move an existing tag or replace historical artifacts.
 5. Only after a separate release decision, create the matching tag and release. A public GitHub repository does not require a PyPI upload or a hosted documentation site.
 
 Use the repository owner's Git identity for maintainer commits. Publishing does not create source commits.

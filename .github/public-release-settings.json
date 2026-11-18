@@ -1,9 +1,12 @@
 {
-  "status": "staged-only; apply after explicit public-release authorization",
+  "status": "applied and verified on 2026-11-18 after owner authorization",
+  "repository_visibility": "public",
+  "github_release": "v0.1.0a2",
   "changes_repository_visibility": false,
   "fork_workflow_approval": {"approval_policy": "all_external_contributors"},
   "private_vulnerability_reporting": "enabled",
-  "secret_scanning": "enable free public-repository scanning and push protection where supported",
+  "secret_scanning": "enabled",
+  "secret_scanning_push_protection": "enabled",
   "pypi_environment": {
     "required_reviewer_login": "lmeirosu",
     "prevent_self_review": false,

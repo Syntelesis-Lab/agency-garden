@@ -1,6 +1,8 @@
 # Publication readiness
 
-The current source is an unreleased `0.1.0a2` candidate. The repository is private. Preparing it for public use does not authorize changing visibility, publishing a package, or deploying a website.
+Agency Garden became public on 18 November 2026 with the owner's authorization. [Version 0.1.0a2](https://github.com/Syntelesis-Lab/agency-garden/releases/tag/v0.1.0a2) is a published GitHub alpha prerelease. PyPI publishing remains disabled; no documentation website was deployed.
+
+The release preserves audited commit `dc369b4c10cda2a3d7abde724743893deec36864` and the exact CI-built wheel, source archive and checksums. The tag and archives retain their preparation-time documentation; this default-branch document records the completed launch.
 
 ## What this alpha delivers
 
@@ -24,34 +26,36 @@ Existing a1 tags, releases and saved runs remain unchanged. A2 changes the engin
 
 ## Repository settings
 
-Preparation uses read-only workflow tokens, disallows Actions approving pull requests, requires full-SHA action pins, limits allowed Actions, enables dependency security updates and keeps publishing disabled. The `pypi` deployment environment is restricted to `main`.
+Settings were applied and read back from GitHub after the visibility change. Workflow tokens default to read-only, Actions cannot approve pull requests, action references require full commit SHAs, allowed Actions are restricted, and dependency security updates remain enabled.
 
 The publication controls are intentionally separate:
 
-| Control | Intended state before public release |
+| Control | Verified launch state |
 |---|---|
-| Repository visibility | Private |
+| Repository visibility | Public; independent, non-fork repository |
+| GitHub release | `v0.1.0a2`, published prerelease |
 | PyPI workflow | Disabled |
 | `PYPI_PUBLISH_ENABLED` | `false` |
 | `PYPI_APPROVED_COMMIT` | `UNAPPROVED` |
 | Main branch | Pull request plus successful `release-check`; no force-push or deletion |
+| External fork workflows | Maintainer approval for all external contributors |
+| Vulnerability reporting | GitHub private reporting enabled |
+| Secret scanning / push protection | Both enabled |
+| `pypi` environment | Maintainer reviewer `lmeirosu`; no administrator bypass; `main` branch only |
 | Provider keys / PyPI tokens | Not stored in the repository |
-| Hosted documentation | Not deployed by this preparation |
+| Hosted documentation | Not deployed |
 
-GitHub rejected required environment reviewers for this private repository's current plan. The branch restriction and explicit workflow/commit gates remain available. Do not describe unavailable settings as enforced. After public-release approval, apply and verify the public-only settings listed below; no subscription upgrade is necessary merely to prepare the source.
+Main-branch protection applies to administrators. It requires resolution of review conversations but does not require an independent approving review; the configured approving-review count is zero. The deployment reviewer is a separate gate and permits maintainer self-review. These controls do not establish independent human review of the research or software.
 
-## The later launch decision
+The environment review rule was unavailable while the repository was private on its current plan. It is now enabled, with administrator bypass disabled. No billing-plan change was needed.
 
-Before changing visibility, confirm the exact candidate commit, green CI, dependency review, artifact hashes and accurate README. A public repository is useful without a PyPI release or a separately hosted website.
+## Release verification
 
-Immediately after an authorized visibility change, configure and verify:
+Before publication, the tag, green CI, clean checkout and distribution hashes were checked against the audit. The GitHub draft was published without changing its tag or artifacts. A fresh unauthenticated clone verified that the repository is accessible publicly.
 
-- Approval for **all external contributors' fork workflows**.
-- GitHub private vulnerability reporting, in addition to the existing private email route in `SECURITY.md`.
-- Free public-repository secret scanning and push protection, as available for the account.
-- A maintainer review requirement for the `pypi` environment, without administrator bypass.
+The desired settings and their application date are recorded in `.github/public-release-settings.json`. Recheck the live API state before later releases; a documentation snapshot does not prevent subsequent configuration changes.
 
-These settings have different visibility/plan constraints. Recheck their actual API state at launch rather than treating this document as confirmation. See [GitHub Actions permissions](https://docs.github.com/en/rest/actions/permissions), [environment protection](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments), and [private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository).
+See [GitHub Actions permissions](https://docs.github.com/en/rest/actions/permissions), [environment protection](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments), and [private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository).
 
 PyPI is a separate decision: an account owner must configure Trusted Publishing and approve the exact release commit. Follow [Releases](releasing.md). Keep the workflow disabled until then.
 

@@ -2,7 +2,9 @@
 
 Changes to the package, evidence format and bundled worlds are recorded here. Alpha releases may change interfaces; pin a version for a study and retain its distributions and environment lock.
 
-## 0.1.0a2 — unreleased
+## 0.1.0a2 — 2026-11-18
+
+Published as a GitHub alpha prerelease. PyPI publishing remains disabled.
 
 - Require the patched filelock 4.2.1-or-newer series; the previous `<4` cap selected a release with known advisories.
 - Reject duplicate JSON keys in model decisions and JSON experiment files; keep rejected model responses and usage for inspection.
