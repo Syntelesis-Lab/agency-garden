@@ -1,5 +1,7 @@
 # Run your first experiment
 
+[Read this guide on agencygarden.com](https://agencygarden.com/docs/quickstart/), or [inspect the recorded tutorial and its results](https://agencygarden.com/examples/).
+
 ## Install
 
 Use Python 3.11 or newer in a virtual environment:

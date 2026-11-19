@@ -4,6 +4,8 @@
 
 **Build worlds. Investigate agency.**
 
+Visit [agencygarden.com](https://agencygarden.com/) for the project website, [online documentation](https://agencygarden.com/docs/), [worked examples](https://agencygarden.com/examples/) and [research library](https://agencygarden.com/research/). The website states its documented software version; the Markdown guides in this repository follow the checked-out revision.
+
 Agency Garden is an experimental world engine for moral reasoning. Its Python runtime supports consequential multi-agent experiments. It separates world rules, participant policies, experimental conditions and evidence, making each part understandable and replaceable.
 
 Start with [the quickstart](quickstart.md), learn [the configuration format](configuration.md), or [build a local world](extensions.md). The first release includes Shared Commons and Trust, scripted and optional model participants, durable runs and an offline explorer.
