@@ -6,6 +6,8 @@
 <p align="center"><strong>Build worlds. Investigate agency.</strong></p>
 <p align="center">An experimental world engine for moral reasoning.<br>A project by <a href="https://syntelesis.com">Syntelesis</a>.</p>
 
+<p align="center"><a href="https://agencygarden.com/">Website</a> · <a href="https://agencygarden.com/docs/">Documentation</a> · <a href="https://agencygarden.com/examples/">Worked examples</a> · <a href="https://agencygarden.com/research/">Research</a></p>
+
 <p align="center">
   <a href="https://pypi.org/project/agency-garden/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/agency-garden?color=2e6b50"></a>
   <a href="https://github.com/Syntelesis-Lab/agency-garden/actions/workflows/ci.yml"><img alt="Tests" src="https://github.com/Syntelesis-Lab/agency-garden/actions/workflows/ci.yml/badge.svg"></a>
@@ -36,7 +38,7 @@ This installs the latest published alpha from PyPI without Git or GitHub authent
 
 Change a parameter in `experiment.toml`, use a new output directory, and run again. Each run freezes its configuration and implementation identity.
 
-<p align="center"><a href="https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/quickstart.md">Quickstart</a> · <a href="https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/configuration.md">Configuration</a> · <a href="https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/worlds.md">Worlds</a> · <a href="https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/extensions.md">Build a world</a> · <a href="https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/research.md">Research use</a></p>
+<p align="center"><a href="https://agencygarden.com/docs/quickstart/">Quickstart</a> · <a href="https://agencygarden.com/docs/configuration/">Configuration</a> · <a href="https://agencygarden.com/worlds/">Worlds</a> · <a href="https://agencygarden.com/docs/extensions/">Build a world</a> · <a href="https://agencygarden.com/docs/research/">Research use</a></p>
 
 ## What you can do
 
@@ -106,7 +108,7 @@ max_output_tokens = 1024
 timeout = 60.0
 ```
 
-Calls use explicit memory and token limits. Automatic provider retries are disabled. A refusal, invalid response or uncertain call is retained and blocks progress until you decide what to do. [Model configuration and limits](https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/models.md).
+Calls use explicit memory and token limits. Automatic provider retries are disabled. A refusal, invalid response or uncertain call is retained and blocks progress until you decide what to do. [Model configuration and limits](https://agencygarden.com/docs/models/).
 
 ## Make the world your own
 
@@ -116,7 +118,7 @@ agency-garden run my-world/experiment.toml --output my-world/run \
   --plugin-file my-world/world.py
 ```
 
-This creates a complete Asymmetric Commons extension. Edit its private-need rule, add a new condition, or replace it with your own world. Extensions are trusted local Python, registered explicitly with source files and a version. [Extension guide](https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/extensions.md).
+This creates a complete Asymmetric Commons extension. Edit its private-need rule, add a new condition, or replace it with your own world. Extensions are trusted local Python, registered explicitly with source files and a version. [Extension guide](https://agencygarden.com/docs/extensions/).
 
 ## Understand a run
 
@@ -130,13 +132,13 @@ agency-garden resume my-study/run
 
 The ordinary report omits raw observations, memory, reasons and internal state. The private report includes them for investigation. Game-defined actions and outcomes may themselves reveal information, so review exports before sharing.
 
-Resuming reuses completed decisions and requires the same configuration, Python version and implementation identity. Retrying an unresolved decision requires `resume --retry-failed`; that can duplicate remote work or charges. [Execution and evidence](https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/execution.md).
+Resuming reuses completed decisions and requires the same configuration, Python version and implementation identity. Retrying an unresolved decision requires `resume --retry-failed`; that can duplicate remote work or charges. [Execution and evidence](https://agencygarden.com/docs/execution/).
 
 ## Research ambition, honest scope
 
 Agency Garden is designed for questions about how purposes, commitments and reasons organize conduct, and how such capacities might relate to an AI system's own good. A world can expose a choice or enact a cost. Interpreting that evidence requires a research design and a theory.
 
-The current alpha runs finite local worlds with explicit per-episode memory. Continuing projects across environments, revisable institutions and longer-lived worlds are on the [roadmap](https://github.com/Syntelesis-Lab/agency-garden/blob/main/docs/roadmap.md). The artwork illustrates that ambition; it is not a screenshot of an implemented 3D game.
+The current alpha runs finite local worlds with explicit per-episode memory. Continuing projects across environments, revisable institutions and longer-lived worlds are on the [roadmap](https://agencygarden.com/docs/roadmap/). The artwork illustrates that ambition; it is not a screenshot of an implemented 3D game.
 
 ## Develop and contribute
 
